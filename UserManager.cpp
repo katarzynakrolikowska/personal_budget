@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void UserManager::registerUser(){
+void UserManager::registerUser() {
     user = enterDataOfNewUser();
     users.push_back(user);
     userFile.saveUserToFile(user);
@@ -14,7 +14,7 @@ void UserManager::registerUser(){
     showUsers();
 }
 
-User UserManager::enterDataOfNewUser(){
+User UserManager::enterDataOfNewUser() {
     user.setUserID(getIdOfNewUser());
     string name, surname, login, password;
 
@@ -71,7 +71,7 @@ void UserManager::showUsers() {
     }
 }
 
-void UserManager::logInUser(){
+void UserManager::logInUser() {
     string login = "", password = "";
 
     cout << endl << "Podaj login: ";
@@ -101,3 +101,13 @@ void UserManager::logInUser(){
     system("pause");
 }
 
+void UserManager::logOutUser() {
+    idOfLoggedInUser = 0;
+}
+
+bool UserManager::ifUserIsLoggedIn() {
+    if(idOfLoggedInUser != 0)
+        return 1;
+    else
+        return 0;
+}
