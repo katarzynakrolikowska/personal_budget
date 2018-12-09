@@ -2,14 +2,13 @@
 #include "PersonalBudget.h"
 using namespace std;
 
-int main()
-{
+int main() {
     PersonalBudget personalBudget("Users.xml");
-    char choice;
-
+    char choice = {0};
     while (true) {
         if (!personalBudget.ifUserIsLoggedIn()) {
             choice = personalBudget.selectOptionFromMainMenu();
+
             switch (choice) {
             case '1':
                 personalBudget.registerUser();
@@ -23,6 +22,15 @@ int main()
             default:
                 cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
                 system("pause");
+                break;
+            }
+        } else {
+            choice = personalBudget.selectOptionFromUserMenu();
+
+            switch (choice) {
+
+            case '7':
+                personalBudget.logOutUser();
                 break;
             }
         }
