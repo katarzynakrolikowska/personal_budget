@@ -7,6 +7,7 @@ int main()
     PersonalBudget personalBudget("Users.xml");
 
     personalBudget.registerUser();
+    personalBudget.logInUser();
 
 
 
