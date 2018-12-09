@@ -13,5 +13,6 @@ class IncomeFile{
 public:
     IncomeFile(string NAMEOFINCOMEFILE): nameOfIncomesFile(NAMEOFINCOMEFILE){}
     void saveIncomeToFile(Income income);
+    vector <Income> loadIncomesFromFile(int idOfLoggedInUser);
 };
 #endif // INCOMEFILE_H

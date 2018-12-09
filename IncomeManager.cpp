@@ -61,4 +61,22 @@ int IncomeManager::getIdOfLastIncome(){
     else return incomes.size() + 1;
 }
 
+void IncomeManager::showIncome(Income &income){
+    cout << endl << "ID przychodu " << income.getIncomeID() << endl;
+    cout << "ID uzytkownika " << income.getUserID() << endl;
+    cout << "Data " << income.getDate() << endl;
+    cout << "Przeznaczenie " << income.getItem() << endl;
+    cout << "Kwota " << income.getAmount() << endl;
+}
 
+void IncomeManager::showIncomes(){
+    vector <Income> ::iterator itr = incomes.begin();
+    for(itr; itr != incomes.end(); itr ++){
+        showIncome(*itr);
+    }
+    system("pause");
+}
+
+void IncomeManager::loadIncomesOfLoggedInUser(){
+    incomes = incomeFile.loadIncomesFromFile(idOfLoggedInUser);
+}
