@@ -1,9 +1,14 @@
 #include <iostream>
-
+#include "PersonalBudget.h"
 using namespace std;
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    PersonalBudget personalBudget("Users.xml");
+
+    personalBudget.registerUser();
+
+
+
     return 0;
 }
