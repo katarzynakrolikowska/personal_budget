@@ -71,3 +71,33 @@ void UserManager::showUsers() {
     }
 }
 
+void UserManager::logInUser(){
+    string login = "", password = "";
+
+    cout << endl << "Podaj login: ";
+    cin >> login;
+
+    vector <User>::iterator itr = users.begin();
+    while (itr != users.end()) {
+        if (itr -> getLogin() == login) {
+            for (int numberOfAttempts = 3; numberOfAttempts > 0; numberOfAttempts--) {
+                cout << "Podaj haslo. Pozostalo prob: " << numberOfAttempts << ": ";
+                cin >> password;
+
+                if (itr -> getPassword() == password) {
+                    cout << endl << "Zalogowales sie." << endl << endl;
+                    idOfLoggedInUser = itr -> getUserID();
+                    system("pause");
+                    return;
+                }
+            }
+            cout << "Wprowadzono 3 razy bledne haslo." << endl;
+            system("pause");
+            return;
+        }
+        itr++;
+    }
+    cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
+    system("pause");
+}
+

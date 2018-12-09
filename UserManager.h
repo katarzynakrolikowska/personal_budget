@@ -26,6 +26,7 @@ public:
         idOfLoggedInUser = 0;
     }
     void registerUser();
+    void logInUser();
     void showUsers();
 };
 
