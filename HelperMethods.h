@@ -14,7 +14,10 @@ public:
     static float convertStringIntoFloat(string numberStr);
     static string convertFloatIntoString(float number);
     static string convertFirstCharToUppercaseLetterOthersToLowercaseLetters(string text);
-    static string getWord();
+    static string getString();
     static char getCharacter();
+    static string getTextLine();
+    static float getFloat();
+    static bool ifAmountIsCorrect(float amount);
 };
 #endif

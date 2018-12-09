@@ -44,7 +44,7 @@ string HelperMethods::convertFirstCharToUppercaseLetterOthersToLowercaseLetters(
     return text;
 }
 
-string HelperMethods::getWord() {
+string HelperMethods::getString() {
     string word = "";
     cin >> word;
     cin.ignore(1000, '\n');
@@ -64,4 +64,32 @@ char HelperMethods::getCharacter() {
         cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
     }
     return character;
+}
+
+string HelperMethods::getTextLine() {
+    getline(cin, input);
+    return input;
+}
+
+float HelperMethods::getFloat() {
+    float number = 0;
+    while (true) {
+        getline(cin, input);
+        for(int i =0; i < input.length(); i++){
+            if(input[i] == ','){
+                input[i] = '.';
+            }
+        }
+        stringstream myStream(input);
+        if (myStream >> number)
+            break;
+        cout << "To nie jest liczba. Wpisz ponownie. " << endl;
+    }
+    return number;
+}
+
+bool HelperMethods::ifAmountIsCorrect(float amount){
+    if(amount < 0.0){
+        return 0;
+    }else return 1;
 }
