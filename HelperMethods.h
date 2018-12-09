@@ -7,6 +7,7 @@
 using namespace std;
 
 class HelperMethods {
+    static string input;
 public:
     static string convertIntIntoString(int number);
     static int convertStringIntoInt(string numberStr);
@@ -14,5 +15,6 @@ public:
     static string convertFloatIntoString(float number);
     static string convertFirstCharToUppercaseLetterOthersToLowercaseLetters(string text);
     static string getWord();
+    static char getCharacter();
 };
 #endif

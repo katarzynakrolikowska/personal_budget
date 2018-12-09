@@ -4,6 +4,8 @@
 #include <algorithm>
 using namespace std;
 
+string HelperMethods::input = "";
+
 string HelperMethods::convertIntIntoString(int number) {
     ostringstream ss;
     ss << number;
@@ -47,4 +49,19 @@ string HelperMethods::getWord() {
     cin >> word;
     cin.ignore(1000, '\n');
     return word;
+}
+
+char HelperMethods::getCharacter() {
+    char character = {0};
+
+    while (true) {
+        cin >> input;
+        cin.ignore(1000, '\n');
+        if (input.length() == 1) {
+            character = input[0];
+            break;
+        }
+        cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
+    }
+    return character;
 }
