@@ -31,6 +31,7 @@ public:
     bool ifUserIsLoggedIn();
     char selectOptionFromUserMenu();
     void showUsers();
+    int getIdOfLoggedInUser();
 };
 
 

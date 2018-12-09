@@ -19,20 +19,20 @@ User UserManager::enterDataOfNewUser() {
     string name, surname, login, password;
 
     cout << "Podaj imie: ";
-    name = HelperMethods::getWord();
+    name = HelperMethods::getString();
     user.setName(HelperMethods::convertFirstCharToUppercaseLetterOthersToLowercaseLetters(name));
     cout << endl<< "Podaj nazwisko: ";
-    surname = HelperMethods::getWord();
+    surname = HelperMethods::getString();
     user.setSurname(HelperMethods::convertFirstCharToUppercaseLetterOthersToLowercaseLetters(surname));
 
     do {
         cout << endl << "Podaj login: ";
-        login = HelperMethods::getWord();
+        login = HelperMethods::getString();
         user.setLogin(login);
     } while (ifLoginIsBookedUp(user.getLogin()) == true);
 
     cout << endl << "Podaj haslo: ";
-    password = HelperMethods::getWord();
+    password = HelperMethods::getString();
     user.setPassword(password);
 
     return user;
@@ -131,4 +131,8 @@ char UserManager::selectOptionFromUserMenu(){
     choice = HelperMethods::getCharacter();
 
     return choice;
+}
+
+int UserManager::getIdOfLoggedInUser(){
+    return idOfLoggedInUser;
 }
