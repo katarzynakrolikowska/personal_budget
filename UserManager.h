@@ -29,6 +29,7 @@ public:
     void logInUser();
     void logOutUser();
     bool ifUserIsLoggedIn();
+    char selectOptionFromUserMenu();
     void showUsers();
 };
 
