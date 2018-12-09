@@ -24,10 +24,10 @@ void IncomeManager::addIncome(){
     if(dateManager.ifDateIsCorrect(date)){
     income = enterIncomeOfSelectedDate(date);
     incomes.push_back(income);
+    incomeFile.saveIncomeToFile(income);
     }else{
         cout << "Data niepoprawana" << endl;
     }
-
 }
 
 Income IncomeManager::enterIncomeOfSelectedDate(string selectedDate){
