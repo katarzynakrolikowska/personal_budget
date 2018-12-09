@@ -16,12 +16,16 @@ class IncomeManager{
     const int idOfLoggedInUser;
     vector <Income> incomes;
 
+    void showIncome(Income &income);
     Income enterIncomeOfSelectedDate(string date);
     int getIdOfLastIncome();
 public:
     IncomeManager(string NAMEOFINCOMESFILE, int IDOFLOGGEDINUSER):
         incomeFile(NAMEOFINCOMESFILE), idOfLoggedInUser(IDOFLOGGEDINUSER) {}
+    void loadIncomesOfLoggedInUser();
     void addIncome();
+    void showIncomes();
+
 };
 
 

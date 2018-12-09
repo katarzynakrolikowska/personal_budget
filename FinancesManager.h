@@ -8,7 +8,10 @@ using namespace std;
 class FinancesManager{
     IncomeManager incomeManager;
 public:
-    FinancesManager(string NAMEOFINCOMESFILE, int IDOFLOGGEDINUSER): incomeManager(NAMEOFINCOMESFILE, IDOFLOGGEDINUSER) {}
+    FinancesManager(string NAMEOFINCOMESFILE, int IDOFLOGGEDINUSER): incomeManager(NAMEOFINCOMESFILE, IDOFLOGGEDINUSER){
+    incomeManager.loadIncomesOfLoggedInUser();
+    }
     void addIncome();
+    void showIncomes();
 };
 #endif // FINANCESMANAGER_H
