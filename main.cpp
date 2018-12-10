@@ -31,8 +31,11 @@ int main() {
             case '1':
                 personalBudget.addIncome();
                 break;
-                case '2':
+            case '2':
                 personalBudget.addExpense();
+                break;
+            case '3':
+                personalBudget.displayBalanceOfCurrentMonth();
                 break;
             case '7':
                 personalBudget.logOutUser();

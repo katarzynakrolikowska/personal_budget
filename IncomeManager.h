@@ -19,12 +19,14 @@ class IncomeManager{
     void showIncome(Income &income);
     Income enterIncomeOfSelectedDate(string date);
     int getIdOfLastIncome();
+
 public:
     IncomeManager(string NAMEOFINCOMESFILE, int IDOFLOGGEDINUSER):
         incomeFile(NAMEOFINCOMESFILE), idOfLoggedInUser(IDOFLOGGEDINUSER) {}
     void loadIncomesOfLoggedInUser();
     void addIncome();
     void showIncomes();
+    float displayIncomesOfCurrentMonth();
 
 };
 

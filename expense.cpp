@@ -23,6 +23,10 @@ float Expense::getAmount() {
     return amount;
 }
 
+int Expense::getNumberOfDaysFromZeroDateToExpenseDate(){
+    return numberOfDaysFromZeroDateToExpenseDate;
+}
+
 void Expense::setExpenseID(int newID) {
     if(newID > 0)
         expenseID = newID;
@@ -44,4 +48,14 @@ void Expense::setItem(string newItem) {
 void Expense::setAmount(float newAmount) {
     if(newAmount > 0)
         amount = newAmount;
+}
+
+void Expense::setNumberOfDaysFromZeroDateToExpenseDate(int newNumberOfDaysFromZeroDateToExpenseDate){
+    numberOfDaysFromZeroDateToExpenseDate = newNumberOfDaysFromZeroDateToExpenseDate;
+}
+
+bool Expense::sortBy(const Expense& expense1, const Expense& expense2){
+    if(expense1.numberOfDaysFromZeroDateToExpenseDate < expense2.numberOfDaysFromZeroDateToExpenseDate)
+    return true;
+    else return false;
 }
