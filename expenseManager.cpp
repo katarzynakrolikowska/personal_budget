@@ -94,3 +94,17 @@ float ExpenseManager::displayExpensesOfCurrentMonth(){
     cout << "Suma wydatkow z biezacego miesiaca: " << sumOfExpenses << endl;
     return sumOfExpenses;
 }
+
+float ExpenseManager::displayExpensesOfPreviousMonth(){
+    float sumOfExpenses = 0.0;
+    sort(expenses.begin(), expenses.end(), Expense::sortBy);
+    vector <Expense> ::iterator itr = expenses.begin();
+    for(itr; itr != expenses.end(); itr ++) {
+        if(dateManager.ifDateIsFromPreviousMonth(itr -> getDate())){
+            sumOfExpenses += itr -> getAmount();
+            showExpense(*itr);
+        }
+    }
+    cout << "Suma wydatkow z poprzedniego miesiaca: " << sumOfExpenses << endl;
+    return sumOfExpenses;
+}

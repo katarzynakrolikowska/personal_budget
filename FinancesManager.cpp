@@ -12,11 +12,12 @@ void FinancesManager::addExpense() {
     expenseManager.addExpense();
 }
 
-void FinancesManager::showExpenses() {
-    expenseManager.showExpenses();
-}
-
 void FinancesManager::displayBalanceOfCurrentMonth(){
     cout << endl << "Wartosc bilansu: " << incomeManager.displayIncomesOfCurrentMonth() - expenseManager.displayExpensesOfCurrentMonth() << endl;
+    system("pause");
+}
+
+void FinancesManager::displayBalanceOfPreviousMonth(){
+    cout << endl << "Wartosc bilansu: " << incomeManager.displayIncomesOfPreviousMonth() - expenseManager.displayExpensesOfPreviousMonth() << endl;
     system("pause");
 }

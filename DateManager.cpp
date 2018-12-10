@@ -158,3 +158,9 @@ bool DateManager::ifDateIsFromCurrentMonth(string date){
         return true;
     else return false;
 }
+
+bool DateManager::ifDateIsFromPreviousMonth(string date){
+    if(getYears(date) == currentDate.years && getMonths(date) == currentDate.months - 1)
+        return true;
+    else return false;
+}
