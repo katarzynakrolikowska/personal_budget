@@ -8,29 +8,30 @@
 
 using namespace std;
 
-void IncomeManager::addIncome(){
+void IncomeManager::addIncome() {
     char answear = {0};
     string date = "";
     cout << "Czy chcesz dodac przychod z dzisiejsza data? (Potwierdz naciskajac klawisz 't') ";
     answear = HelperMethods::getCharacter();
 
-    if(answear == 'T' || answear == 't'){
+    if(answear == 'T' || answear == 't') {
         date = dateManager.convertDateIntoString(dateManager.getTodayDate());
-    }else{
+    } else {
         cout << "Podaj date w formacie rrrr-mm-dd ";
         date = HelperMethods::getString();
+        if(!dateManager.ifDateIsCorrect(date)) {
+            cout << "Data niepoprawana" << endl;
+            system("pause");
+            return;
+        }
     }
-
-    if(dateManager.ifDateIsCorrect(date)){
     income = enterIncomeOfSelectedDate(date);
     incomes.push_back(income);
     incomeFile.saveIncomeToFile(income);
-    }else{
-        cout << "Data niepoprawana" << endl;
-    }
+    incomeFile.increaseNumberOfIncomes();
 }
 
-Income IncomeManager::enterIncomeOfSelectedDate(string selectedDate){
+Income IncomeManager::enterIncomeOfSelectedDate(string selectedDate) {
     string item = "";
     float amount = 0.0;
 
@@ -45,38 +46,36 @@ Income IncomeManager::enterIncomeOfSelectedDate(string selectedDate){
     cout << "Podaj wartosc przychodu: ";
 
     amount = HelperMethods::getFloat();
-    if(HelperMethods::ifAmountIsCorrect(amount)){
+    if(HelperMethods::ifAmountIsCorrect(amount)) {
         amount = round(amount * 100) / 100;
         income.setAmount(amount);
-    }else{
+    } else {
         cout << "Kwota niepoprawna";
         system("pause");
     }
     return income;
 }
 
-int IncomeManager::getIdOfLastIncome(){
-    if(incomes.empty())
-        return 1;
-    else return incomes.size() + 1;
+int IncomeManager::getIdOfLastIncome() {
+    return incomeFile.getIdOfLastIncomeAtFile();
 }
 
-void IncomeManager::showIncome(Income &income){
+void IncomeManager::showIncome(Income &income) {
     cout << endl << "ID przychodu " << income.getIncomeID() << endl;
     cout << "ID uzytkownika " << income.getUserID() << endl;
     cout << "Data " << income.getDate() << endl;
-    cout << "Przeznaczenie " << income.getItem() << endl;
+    cout << "Opis " << income.getItem() << endl;
     cout << "Kwota " << income.getAmount() << endl;
 }
 
-void IncomeManager::showIncomes(){
+void IncomeManager::showIncomes() {
     vector <Income> ::iterator itr = incomes.begin();
-    for(itr; itr != incomes.end(); itr ++){
+    for(itr; itr != incomes.end(); itr ++) {
         showIncome(*itr);
     }
     system("pause");
 }
 
-void IncomeManager::loadIncomesOfLoggedInUser(){
+void IncomeManager::loadIncomesOfLoggedInUser() {
     incomes = incomeFile.loadIncomesFromFile(idOfLoggedInUser);
 }
