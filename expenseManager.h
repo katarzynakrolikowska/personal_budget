@@ -25,6 +25,7 @@ public:
     void loadExpensesOfLoggedInUser();
     void addExpense();
     void showExpenses();
+    float displayExpensesOfCurrentMonth();
 
 };
 

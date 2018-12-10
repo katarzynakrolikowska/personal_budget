@@ -53,6 +53,7 @@ Expense ExpenseManager::enterExpenseOfSelectedDate(string selectedDate) {
         cout << "Kwota niepoprawna";
         system("pause");
     }
+    expense.setNumberOfDaysFromZeroDateToExpenseDate(dateManager.getSecondsFromZeroDateToSelectedDate(selectedDate));
     return expense;
 }
 
@@ -65,7 +66,7 @@ void ExpenseManager::showExpense(Expense &expense) {
     cout << "ID uzytkownika " << expense.getUserID() << endl;
     cout << "Data " << expense.getDate() << endl;
     cout << "Opis " << expense.getItem() << endl;
-    cout << "Kwota " << expense.getAmount() << endl;
+    cout << "Wartosc " << expense.getAmount() << endl;
 }
 
 void ExpenseManager::showExpenses() {
@@ -78,4 +79,18 @@ void ExpenseManager::showExpenses() {
 
 void ExpenseManager::loadExpensesOfLoggedInUser() {
     expenses = expenseFile.loadExpensesFromFile(idOfLoggedInUser);
+}
+
+float ExpenseManager::displayExpensesOfCurrentMonth(){
+    float sumOfExpenses = 0.0;
+    sort(expenses.begin(), expenses.end(), Expense::sortBy);
+    vector <Expense> ::iterator itr = expenses.begin();
+    for(itr; itr != expenses.end(); itr ++) {
+        if(dateManager.ifDateIsFromCurrentMonth(itr -> getDate())){
+            sumOfExpenses += itr -> getAmount();
+            showExpense(*itr);
+        }
+    }
+    cout << "Suma wydatkow z biezacego miesiaca: " << sumOfExpenses << endl;
+    return sumOfExpenses;
 }

@@ -2,7 +2,9 @@
 #include <vector>
 #include "ExpenseFile.h"
 #include "HelperMethods.h"
+#include "DateManager.h"
 #include "Expense.h"
+
 using namespace std;
 
 void ExpenseFile::saveExpenseToFile(Expense expense) {
@@ -21,6 +23,7 @@ void ExpenseFile::saveExpenseToFile(Expense expense) {
 vector <Expense> ExpenseFile::loadExpensesFromFile(int idOfLoggedInUser) {
     vector <Expense> expenses;
     Expense expense;
+    DateManager dateManager;
     numberOfExpenses = 0;
     xml.Load(nameOfExpensesFile.c_str());
 
@@ -39,6 +42,7 @@ vector <Expense> ExpenseFile::loadExpensesFromFile(int idOfLoggedInUser) {
             expense.setItem(xml.GetData());
             xml.FindElem("AMOUNT");
             expense.setAmount(HelperMethods::convertStringIntoFloat(xml.GetData()));
+            expense.setNumberOfDaysFromZeroDateToExpenseDate(dateManager.getSecondsFromZeroDateToSelectedDate(expense.getDate()));
             expenses.push_back(expense);
         }
         numberOfExpenses ++;

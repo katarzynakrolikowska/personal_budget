@@ -153,4 +153,8 @@ string DateManager::getEarlierDate(string date1, string date2) {
         return date2;
 }
 
-
+bool DateManager::ifDateIsFromCurrentMonth(string date){
+    if(getYears(date) == currentDate.years && getMonths(date) == currentDate.months)
+        return true;
+    else return false;
+}

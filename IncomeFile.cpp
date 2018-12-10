@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "IncomeFile.h"
+#include "DateManager.h"
 #include "HelperMethods.h"
 #include "Income.h"
 using namespace std;
@@ -21,6 +22,7 @@ void IncomeFile::saveIncomeToFile(Income income) {
 vector <Income> IncomeFile::loadIncomesFromFile(int idOfLoggedInUser) {
     vector <Income> incomes;
     Income income;
+    DateManager dateManager;
     numberOfIncomes = 0;
     xml.Load(nameOfIncomesFile.c_str());
 
@@ -39,6 +41,7 @@ vector <Income> IncomeFile::loadIncomesFromFile(int idOfLoggedInUser) {
             income.setItem(xml.GetData());
             xml.FindElem("AMOUNT");
             income.setAmount(HelperMethods::convertStringIntoFloat(xml.GetData()));
+            income.setNumberOfDaysFromZeroDateToIncomeDate(dateManager.getSecondsFromZeroDateToSelectedDate(income.getDate()));
             incomes.push_back(income);
         }
         numberOfIncomes++;
