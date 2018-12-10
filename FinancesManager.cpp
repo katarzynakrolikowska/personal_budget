@@ -3,10 +3,18 @@
 
 using namespace std;
 
-void FinancesManager::addIncome(){
+void FinancesManager::addIncome() {
     incomeManager.addIncome();
 }
 
-void FinancesManager::showIncomes(){
+void FinancesManager::showIncomes() {
     incomeManager.showIncomes();
+}
+
+void FinancesManager::addExpense() {
+    expenseManager.addExpense();
+}
+
+void FinancesManager::showExpenses() {
+    expenseManager.showExpenses();
 }

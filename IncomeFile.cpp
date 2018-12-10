@@ -13,7 +13,7 @@ void IncomeFile::saveIncomeToFile(Income income) {
     xml.AddElem("USERID", income.getUserID());
     xml.AddElem("DATE", income.getDate());
     xml.AddElem("ITEM", income.getItem());
-    xml.AddElem("AMOUNT", income.getAmount());
+    xml.AddElem("AMOUNT", HelperMethods::convertFloatIntoString(income.getAmount()));
     xml.OutOfElem();
     xml.Save(nameOfIncomesFile.c_str());
 }
@@ -21,7 +21,7 @@ void IncomeFile::saveIncomeToFile(Income income) {
 vector <Income> IncomeFile::loadIncomesFromFile(int idOfLoggedInUser) {
     vector <Income> incomes;
     Income income;
-
+    numberOfIncomes = 0;
     xml.Load(nameOfIncomesFile.c_str());
 
     while(xml.FindElem("INCOME")) {
@@ -41,9 +41,22 @@ vector <Income> IncomeFile::loadIncomesFromFile(int idOfLoggedInUser) {
             income.setAmount(HelperMethods::convertStringIntoFloat(xml.GetData()));
             incomes.push_back(income);
         }
+        numberOfIncomes++;
         xml.OutOfElem();
-        //if(income.getUserID() == idOfLoggedInUser)
-
     }
+    numberOfIncomes ++;
     return incomes;
+}
+
+int IncomeFile::getIdOfLastIncomeAtFile() {
+    xml.Load(nameOfIncomesFile.c_str());
+    if(xml.FindElem("INCOME")) {
+        return numberOfIncomes;
+    } else {
+        return 1;
+    }
+}
+
+void IncomeFile::increaseNumberOfIncomes(){
+    numberOfIncomes ++;
 }

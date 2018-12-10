@@ -3,7 +3,7 @@
 using namespace std;
 
 int main() {
-    PersonalBudget personalBudget("Users.xml", "Incomes.xml");
+    PersonalBudget personalBudget("Users.xml", "Incomes.xml", "Expenses.xml");
     char choice = {0};
     while (true) {
         if (!personalBudget.ifUserIsLoggedIn()) {
@@ -30,6 +30,9 @@ int main() {
             switch (choice) {
             case '1':
                 personalBudget.addIncome();
+                break;
+                case '2':
+                personalBudget.addExpense();
                 break;
             case '7':
                 personalBudget.logOutUser();
