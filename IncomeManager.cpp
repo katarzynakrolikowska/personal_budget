@@ -95,3 +95,18 @@ float IncomeManager::displayIncomesOfCurrentMonth() {
     return sumOfIncomes;
 
 }
+
+float IncomeManager::displayIncomesOfPreviousMonth() {
+    float sumOfIncomes = 0.0;
+    sort(incomes.begin(), incomes.end(), Income::sortBy);
+    vector <Income> ::iterator itr = incomes.begin();
+    for(itr; itr != incomes.end(); itr ++) {
+        if(dateManager.ifDateIsFromPreviousMonth(itr -> getDate())){
+            sumOfIncomes += itr -> getAmount();
+            showIncome(*itr);
+        }
+    }
+    cout << "Suma przychodow z poprzedniego miesiaca: " << sumOfIncomes << endl;
+    return sumOfIncomes;
+
+}

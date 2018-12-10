@@ -26,7 +26,7 @@ public:
     void addExpense();
     void showExpenses();
     float displayExpensesOfCurrentMonth();
-
+    float displayExpensesOfPreviousMonth();
 };
 
 

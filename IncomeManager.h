@@ -27,6 +27,7 @@ public:
     void addIncome();
     void showIncomes();
     float displayIncomesOfCurrentMonth();
+    float displayIncomesOfPreviousMonth();
 
 };
 

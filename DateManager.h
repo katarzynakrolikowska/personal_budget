@@ -30,5 +30,6 @@ public:
     int getSecondsFromZeroDateToSelectedDate(string selectedDate);
     string getEarlierDate(string date1, string date2);
     bool ifDateIsFromCurrentMonth(string date);
+    bool ifDateIsFromPreviousMonth(string date);
 };
 #endif

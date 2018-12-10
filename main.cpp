@@ -37,6 +37,9 @@ int main() {
             case '3':
                 personalBudget.displayBalanceOfCurrentMonth();
                 break;
+            case '4':
+                personalBudget.displayBalanceOfPreviousMonth();
+                break;
             case '7':
                 personalBudget.logOutUser();
                 break;
