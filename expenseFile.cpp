@@ -42,7 +42,7 @@ vector <Expense> ExpenseFile::loadExpensesFromFile(int idOfLoggedInUser) {
             expense.setItem(xml.GetData());
             xml.FindElem("AMOUNT");
             expense.setAmount(HelperMethods::convertStringIntoFloat(xml.GetData()));
-            expense.setNumberOfDaysFromZeroDateToExpenseDate(dateManager.getSecondsFromZeroDateToSelectedDate(expense.getDate()));
+            expense.setNumberOfDaysFromZeroDateToExpenseDate(dateManager.getDaysFromZeroDateToSelectedDate(expense.getDate()));
             expenses.push_back(expense);
         }
         numberOfExpenses ++;

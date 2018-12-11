@@ -15,6 +15,7 @@ class IncomeManager{
     DateManager dateManager;
     const int idOfLoggedInUser;
     vector <Income> incomes;
+    float sumOfIncomes;
 
     void showIncome(Income &income);
     Income enterIncomeOfSelectedDate(string date);
@@ -22,12 +23,14 @@ class IncomeManager{
 
 public:
     IncomeManager(string NAMEOFINCOMESFILE, int IDOFLOGGEDINUSER):
-        incomeFile(NAMEOFINCOMESFILE), idOfLoggedInUser(IDOFLOGGEDINUSER) {}
+        incomeFile(NAMEOFINCOMESFILE), idOfLoggedInUser(IDOFLOGGEDINUSER) {
+        sumOfIncomes = 0.0;}
     void loadIncomesOfLoggedInUser();
     void addIncome();
-    float displayIncomesOfCurrentMonth();
-    float displayIncomesOfPreviousMonth();
-    float displayIncomesOfSelectedPeriod(string earlierDate, string laterDate);
+    void displayIncomesOfCurrentMonth();
+    void displayIncomesOfPreviousMonth();
+    void displayIncomesOfSelectedPeriod(string earlierDate, string laterDate);
+    float getSumOfIncomes();
 
 };
 

@@ -41,7 +41,7 @@ vector <Income> IncomeFile::loadIncomesFromFile(int idOfLoggedInUser) {
             income.setItem(xml.GetData());
             xml.FindElem("AMOUNT");
             income.setAmount(HelperMethods::convertStringIntoFloat(xml.GetData()));
-            income.setNumberOfDaysFromZeroDateToIncomeDate(dateManager.getSecondsFromZeroDateToSelectedDate(income.getDate()));
+            income.setNumberOfDaysFromZeroDateToIncomeDate(dateManager.getDaysFromZeroDateToSelectedDate(income.getDate()));
             incomes.push_back(income);
         }
         numberOfIncomes++;

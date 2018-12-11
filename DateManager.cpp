@@ -125,7 +125,7 @@ bool DateManager::ifDateIsCorrect(string testedDate) {
 }
 
 
-int DateManager::getSecondsFromZeroDateToSelectedDate(string selectedDate) {
+int DateManager::getDaysFromZeroDateToSelectedDate(string selectedDate) {
     struct tm date, zeroDate;
     long long int differenceSeconds;
 
@@ -147,7 +147,7 @@ int DateManager::getSecondsFromZeroDateToSelectedDate(string selectedDate) {
 }
 
 string DateManager::getEarlierDate(string date1, string date2) {
-    if(getSecondsFromZeroDateToSelectedDate(date1) <= getSecondsFromZeroDateToSelectedDate(date2)) {
+    if(getDaysFromZeroDateToSelectedDate(date1) <= getDaysFromZeroDateToSelectedDate(date2)) {
         return date1;
     } else
         return date2;
@@ -166,7 +166,7 @@ bool DateManager::ifDateIsFromPreviousMonth(string date){
 }
 
 bool DateManager::ifDateIsFromSelectedPeriod(string earlierDate, string laterDate, int numbersOfDaysFromZeroDateToCheckedDate){
-    if(numbersOfDaysFromZeroDateToCheckedDate >= getSecondsFromZeroDateToSelectedDate(earlierDate) && numbersOfDaysFromZeroDateToCheckedDate <= getSecondsFromZeroDateToSelectedDate(laterDate)){
+    if(numbersOfDaysFromZeroDateToCheckedDate >= getDaysFromZeroDateToSelectedDate(earlierDate) && numbersOfDaysFromZeroDateToCheckedDate <= getDaysFromZeroDateToSelectedDate(laterDate)){
         return true;
     }else return false;
 }

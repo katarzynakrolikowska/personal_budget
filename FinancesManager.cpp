@@ -16,7 +16,9 @@ void FinancesManager::addExpense() {
 void FinancesManager::displayBalanceOfCurrentMonth() {
     system("cls");
     float balance = 0.0;
-    balance = incomeManager.displayIncomesOfCurrentMonth() - expenseManager.displayExpensesOfCurrentMonth();
+    incomeManager.displayIncomesOfCurrentMonth();
+    expenseManager.displayExpensesOfCurrentMonth();
+    balance = incomeManager.getSumOfIncomes() - expenseManager.getSumOfExpenses();
     cout << endl << "W biezacym miesiacu wygenerowano ";
     if(balance >= 0)
         cout << "oszczednosci: " << balance << endl;
@@ -28,7 +30,9 @@ void FinancesManager::displayBalanceOfCurrentMonth() {
 void FinancesManager::displayBalanceOfPreviousMonth() {
     system("cls");
     float balance = 0.0;
-    balance = incomeManager.displayIncomesOfPreviousMonth() - expenseManager.displayExpensesOfPreviousMonth();
+    incomeManager.displayIncomesOfPreviousMonth();
+    expenseManager.displayExpensesOfPreviousMonth();
+    balance = incomeManager.getSumOfIncomes() - expenseManager.getSumOfExpenses();
     cout << endl << "W poprzednim miesiacu wygenerowano ";
     if(balance >= 0)
         cout << "oszczednosci: " << balance << endl;
@@ -40,7 +44,7 @@ void FinancesManager::displayBalanceOfPreviousMonth() {
 void FinancesManager::displayBalanceOfSelectedPeriod() {
     string earlierDate = "", laterDate = "";
     float balance = 0.0;
-    cout << "Podaj date poczatkowa (rrrr-mm-yy) ";
+    cout << "Podaj date poczatkowa (rrrr-mm-dd) ";
     earlierDate = HelperMethods::getDateInFormatYYYYMMDD();
     if(!dateManager.ifDateIsCorrect(earlierDate)) {
         cout << "Data niepoprawana" << endl;
@@ -48,7 +52,7 @@ void FinancesManager::displayBalanceOfSelectedPeriod() {
         return;
     }
 
-    cout << "Podaj date koncowa (rrrr-mm-yy) ";
+    cout << "Podaj date koncowa (rrrr-mm-dd) ";
     laterDate = HelperMethods::getDateInFormatYYYYMMDD();
     if(!dateManager.ifDateIsCorrect(laterDate)) {
         cout << "Data niepoprawana" << endl;
@@ -62,7 +66,9 @@ void FinancesManager::displayBalanceOfSelectedPeriod() {
         return;
     }
     system("cls");
-    balance = incomeManager.displayIncomesOfSelectedPeriod(earlierDate, laterDate) - expenseManager.displayExpensesOfSelectedPeriod(earlierDate, laterDate);
+    incomeManager.displayIncomesOfSelectedPeriod(earlierDate, laterDate);
+    expenseManager.displayExpensesOfSelectedPeriod(earlierDate, laterDate);
+    balance = incomeManager.getSumOfIncomes() - expenseManager.getSumOfExpenses();
     cout << endl << "W okresie od " << earlierDate << " do " << laterDate << " wygenerowano ";
     if(balance >= 0)
         cout << "oszczednosci: " << balance << endl;

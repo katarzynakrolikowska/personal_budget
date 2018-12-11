@@ -27,7 +27,7 @@ public:
     Date getTodayDate();
     string convertDateIntoString(Date date);
     bool ifDateIsCorrect(string testedDate);
-    int getSecondsFromZeroDateToSelectedDate(string selectedDate);
+    int getDaysFromZeroDateToSelectedDate(string selectedDate);
     string getEarlierDate(string date1, string date2);
     bool ifDateIsFromCurrentMonth(string date);
     bool ifDateIsFromPreviousMonth(string date);
