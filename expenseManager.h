@@ -15,18 +15,21 @@ class ExpenseManager{
     DateManager dateManager;
     const int idOfLoggedInUser;
     vector <Expense> expenses;
+    float sumOfExpenses;
 
     void showExpense(Expense &expense);
     Expense enterExpenseOfSelectedDate(string date);
     int getIdOfLastExpense();
 public:
     ExpenseManager(string NAMEOFEXPENSESFILE, int IDOFLOGGEDINUSER):
-        expenseFile(NAMEOFEXPENSESFILE), idOfLoggedInUser(IDOFLOGGEDINUSER) {}
+        expenseFile(NAMEOFEXPENSESFILE), idOfLoggedInUser(IDOFLOGGEDINUSER) {
+        sumOfExpenses = 0.0;}
     void loadExpensesOfLoggedInUser();
     void addExpense();
-    float displayExpensesOfCurrentMonth();
-    float displayExpensesOfPreviousMonth();
-    float displayExpensesOfSelectedPeriod(string earlierDate, string laterDate);
+    void displayExpensesOfCurrentMonth();
+    void displayExpensesOfPreviousMonth();
+    void displayExpensesOfSelectedPeriod(string earlierDate, string laterDate);
+    float getSumOfExpenses();
 };
 
 

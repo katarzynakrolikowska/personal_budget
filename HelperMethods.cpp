@@ -46,10 +46,9 @@ string HelperMethods::convertFirstCharToUppercaseLetterOthersToLowercaseLetters(
 }
 
 string HelperMethods::getString() {
-    string word = "";
-    cin >> word;
+    cin >> input;
     cin.ignore(1000, '\n');
-    return word;
+    return input;
 }
 
 char HelperMethods::getCharacter() {
@@ -73,7 +72,7 @@ string HelperMethods::getTextLine() {
 }
 
 float HelperMethods::getAmount() {
-    float amount = 0;
+    float amount = 0.0;
     while (true) {
         getline(cin, input);
         for(int i =0; i < input.length(); i++) {

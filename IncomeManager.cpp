@@ -49,7 +49,7 @@ Income IncomeManager::enterIncomeOfSelectedDate(string selectedDate) {
 
     amount = round(amount * 100) / 100;
     income.setAmount(amount);
-    income.setNumberOfDaysFromZeroDateToIncomeDate(dateManager.getSecondsFromZeroDateToSelectedDate(selectedDate));
+    income.setNumberOfDaysFromZeroDateToIncomeDate(dateManager.getDaysFromZeroDateToSelectedDate(selectedDate));
     return income;
 }
 
@@ -70,8 +70,8 @@ void IncomeManager::loadIncomesOfLoggedInUser() {
     incomes = incomeFile.loadIncomesFromFile(idOfLoggedInUser);
 }
 
-float IncomeManager::displayIncomesOfCurrentMonth() {
-    float sumOfIncomes = 0.0;
+void IncomeManager::displayIncomesOfCurrentMonth() {
+    sumOfIncomes = 0.0;
     sort(incomes.begin(), incomes.end(), Income::sortBy);
     vector <Income> ::iterator itr = incomes.begin();
     cout << "PRZYCHODY" << endl;
@@ -82,12 +82,12 @@ float IncomeManager::displayIncomesOfCurrentMonth() {
         }
     }
     cout << "Suma przychodow z biezacego miesiaca: " << sumOfIncomes << endl;
-    return sumOfIncomes;
+
 
 }
 
-float IncomeManager::displayIncomesOfPreviousMonth() {
-    float sumOfIncomes = 0.0;
+void IncomeManager::displayIncomesOfPreviousMonth() {
+    sumOfIncomes = 0.0;
     sort(incomes.begin(), incomes.end(), Income::sortBy);
     vector <Income> ::iterator itr = incomes.begin();
     cout << "PRZYCHODY" << endl;
@@ -98,12 +98,11 @@ float IncomeManager::displayIncomesOfPreviousMonth() {
         }
     }
     cout << "Suma przychodow z poprzedniego miesiaca: " << sumOfIncomes << endl;
-    return sumOfIncomes;
 
 }
 
-float IncomeManager::displayIncomesOfSelectedPeriod(string earlierDate, string laterDate) {
-    float sumOfIncomes = 0.0;
+void IncomeManager::displayIncomesOfSelectedPeriod(string earlierDate, string laterDate) {
+    sumOfIncomes = 0.0;
     sort(incomes.begin(), incomes.end(), Income::sortBy);
     vector <Income> ::iterator itr = incomes.begin();
     cout << "PRZYCHODY" << endl;
@@ -114,6 +113,8 @@ float IncomeManager::displayIncomesOfSelectedPeriod(string earlierDate, string l
         }
     }
     cout << "Suma przychodow z wybranego okresu: " << sumOfIncomes << endl;
-    return sumOfIncomes;
+}
 
+float IncomeManager::getSumOfIncomes(){
+    return sumOfIncomes;
 }

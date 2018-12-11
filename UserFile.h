@@ -15,6 +15,7 @@ public:
     UserFile(string USERSFILE) : nameOfUsersFile(USERSFILE) {}
     void saveUserToFile(User user);
     vector <User> loadUsersFromFile();
+    void editUserPasswordAtFile(int idOfLoggedInUser, string newPassword);
 };
 
 

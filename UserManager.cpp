@@ -11,7 +11,6 @@ void UserManager::registerUser() {
     userFile.saveUserToFile(user);
     cout << endl << "Konto zalozono pomyslnie" << endl << endl;
     system("pause");
-    showUsers();
 }
 
 User UserManager::enterDataOfNewUser() {
@@ -53,22 +52,6 @@ bool UserManager::ifLoginIsBookedUp(string login) {
         }
     }
     return false;
-}
-
-
-void UserManager::showUser(User user) {
-    cout << "ID " << user.getUserID() << endl;
-    cout << "nazwa " << user.getLogin() << endl;
-    cout << "haslo " << user.getPassword() << endl;
-    cout << "imie " << user.getName() << endl;
-    cout << "nazwisko " << user.getSurname() << endl << endl;
-}
-
-void UserManager::showUsers() {
-    vector <User> :: iterator itr;
-    for(itr = users.begin(); itr != users.end(); itr ++) {
-        showUser(*itr);
-    }
 }
 
 void UserManager::logInUser() {
@@ -135,4 +118,19 @@ char UserManager::selectOptionFromUserMenu(){
 
 int UserManager::getIdOfLoggedInUser(){
     return idOfLoggedInUser;
+}
+
+void UserManager::changePassword(){
+    string newPassword = "";
+    cout << "Podaj nowe haslo: ";
+    newPassword = HelperMethods::getString();
+
+    for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++) {
+        if (itr -> getUserID() == idOfLoggedInUser) {
+            itr -> setPassword(newPassword);
+            cout << "Haslo zostalo zmienione." << endl << endl;
+            system("pause");
+        }
+    }
+    userFile.editUserPasswordAtFile(idOfLoggedInUser, newPassword);
 }

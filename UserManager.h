@@ -17,8 +17,6 @@ class UserManager {
     User enterDataOfNewUser();
     int getIdOfNewUser();
     bool ifLoginIsBookedUp(string login);
-    void showUser(User user);
-
 
 public:
     UserManager(string USERSFILE): userFile(USERSFILE){
@@ -30,8 +28,8 @@ public:
     void logOutUser();
     bool ifUserIsLoggedIn();
     char selectOptionFromUserMenu();
-    void showUsers();
     int getIdOfLoggedInUser();
+    void changePassword();
 };
 
 
