@@ -17,7 +17,7 @@ public:
     static string getString();
     static char getCharacter();
     static string getTextLine();
-    static float getFloat();
-    static bool ifAmountIsCorrect(float amount);
+    static float getAmount();
+    static string getDateInFormatYYYYMMDD();
 };
 #endif

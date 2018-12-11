@@ -18,7 +18,7 @@ void ExpenseManager::addExpense() {
         date = dateManager.convertDateIntoString(dateManager.getTodayDate());
     } else {
         cout << "Podaj date w formacie rrrr-mm-dd ";
-        date = HelperMethods::getString();
+        date = HelperMethods::getDateInFormatYYYYMMDD();
         if(!dateManager.ifDateIsCorrect(date)) {
             cout << "Data niepoprawana" << endl;
             system("pause");
@@ -45,14 +45,9 @@ Expense ExpenseManager::enterExpenseOfSelectedDate(string selectedDate) {
 
     cout << "Podaj wartosc wydatku: ";
 
-    amount = HelperMethods::getFloat();
-    if(HelperMethods::ifAmountIsCorrect(amount)) {
-        amount = round(amount * 100) / 100;
-        expense.setAmount(amount);
-    } else {
-        cout << "Kwota niepoprawna";
-        system("pause");
-    }
+    amount = HelperMethods::getAmount();
+    amount = round(amount * 100) / 100;
+    expense.setAmount(amount);
     expense.setNumberOfDaysFromZeroDateToExpenseDate(dateManager.getSecondsFromZeroDateToSelectedDate(selectedDate));
     return expense;
 }
@@ -62,31 +57,23 @@ int ExpenseManager::getIdOfLastExpense() {
 }
 
 void ExpenseManager::showExpense(Expense &expense) {
-    cout << endl << "ID wydatku " << expense.getExpenseID() << endl;
-    cout << "ID uzytkownika " << expense.getUserID() << endl;
-    cout << "Data " << expense.getDate() << endl;
-    cout << "Opis " << expense.getItem() << endl;
-    cout << "Wartosc " << expense.getAmount() << endl;
-}
-
-void ExpenseManager::showExpenses() {
-    vector <Expense> ::iterator itr = expenses.begin();
-    for(itr; itr != expenses.end(); itr ++) {
-        showExpense(*itr);
-    }
-    system("pause");
+    cout << endl << "ID wydatku         "<< expense.getExpenseID() << endl;
+    cout << "Data               " << expense.getDate() << endl;
+    cout << "Opis               " << expense.getItem() << endl;
+    cout << "Wartosc            " << expense.getAmount() << endl;
 }
 
 void ExpenseManager::loadExpensesOfLoggedInUser() {
     expenses = expenseFile.loadExpensesFromFile(idOfLoggedInUser);
 }
 
-float ExpenseManager::displayExpensesOfCurrentMonth(){
+float ExpenseManager::displayExpensesOfCurrentMonth() {
     float sumOfExpenses = 0.0;
     sort(expenses.begin(), expenses.end(), Expense::sortBy);
     vector <Expense> ::iterator itr = expenses.begin();
+    cout << endl << endl << "WYDATKI" << endl;
     for(itr; itr != expenses.end(); itr ++) {
-        if(dateManager.ifDateIsFromCurrentMonth(itr -> getDate())){
+        if(dateManager.ifDateIsFromCurrentMonth(itr -> getDate())) {
             sumOfExpenses += itr -> getAmount();
             showExpense(*itr);
         }
@@ -95,16 +82,32 @@ float ExpenseManager::displayExpensesOfCurrentMonth(){
     return sumOfExpenses;
 }
 
-float ExpenseManager::displayExpensesOfPreviousMonth(){
+float ExpenseManager::displayExpensesOfPreviousMonth() {
     float sumOfExpenses = 0.0;
     sort(expenses.begin(), expenses.end(), Expense::sortBy);
     vector <Expense> ::iterator itr = expenses.begin();
+    cout << endl << endl << "WYDATKI" << endl;
     for(itr; itr != expenses.end(); itr ++) {
-        if(dateManager.ifDateIsFromPreviousMonth(itr -> getDate())){
+        if(dateManager.ifDateIsFromPreviousMonth(itr -> getDate())) {
             sumOfExpenses += itr -> getAmount();
             showExpense(*itr);
         }
     }
     cout << "Suma wydatkow z poprzedniego miesiaca: " << sumOfExpenses << endl;
+    return sumOfExpenses;
+}
+
+float ExpenseManager::displayExpensesOfSelectedPeriod(string earlierDate, string laterDate) {
+    float sumOfExpenses = 0.0;
+    sort(expenses.begin(), expenses.end(), Expense::sortBy);
+    vector <Expense> ::iterator itr = expenses.begin();
+    cout << endl << endl << "WYDATKI" << endl;
+    for(itr; itr != expenses.end(); itr ++) {
+        if(dateManager.ifDateIsFromSelectedPeriod(earlierDate, laterDate, itr -> getNumberOfDaysFromZeroDateToExpenseDate())) {
+            sumOfExpenses += itr -> getAmount();
+            showExpense(*itr);
+        }
+    }
+    cout << "Suma wydatkow z wybranego okresu: " << sumOfExpenses << endl;
     return sumOfExpenses;
 }

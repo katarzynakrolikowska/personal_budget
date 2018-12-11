@@ -24,9 +24,9 @@ public:
         expenseFile(NAMEOFEXPENSESFILE), idOfLoggedInUser(IDOFLOGGEDINUSER) {}
     void loadExpensesOfLoggedInUser();
     void addExpense();
-    void showExpenses();
     float displayExpensesOfCurrentMonth();
     float displayExpensesOfPreviousMonth();
+    float displayExpensesOfSelectedPeriod(string earlierDate, string laterDate);
 };
 
 
