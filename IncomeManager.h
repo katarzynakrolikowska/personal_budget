@@ -25,9 +25,9 @@ public:
         incomeFile(NAMEOFINCOMESFILE), idOfLoggedInUser(IDOFLOGGEDINUSER) {}
     void loadIncomesOfLoggedInUser();
     void addIncome();
-    void showIncomes();
     float displayIncomesOfCurrentMonth();
     float displayIncomesOfPreviousMonth();
+    float displayIncomesOfSelectedPeriod(string earlierDate, string laterDate);
 
 };
 

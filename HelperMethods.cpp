@@ -1,6 +1,7 @@
 #include<iostream>
 #include "HelperMethods.h"
 #include<sstream>
+#include<string>
 #include <algorithm>
 using namespace std;
 
@@ -71,25 +72,41 @@ string HelperMethods::getTextLine() {
     return input;
 }
 
-float HelperMethods::getFloat() {
-    float number = 0;
+float HelperMethods::getAmount() {
+    float amount = 0;
     while (true) {
         getline(cin, input);
-        for(int i =0; i < input.length(); i++){
-            if(input[i] == ','){
+        for(int i =0; i < input.length(); i++) {
+            if(input[i] == ',') {
                 input[i] = '.';
             }
         }
         stringstream myStream(input);
-        if (myStream >> number)
+        if (myStream >> amount && amount >= 0.0)
             break;
-        cout << "To nie jest liczba. Wpisz ponownie. " << endl;
+        cout << "To nie jest kwota. Wpisz ponownie. " << endl;
     }
-    return number;
+    return amount;
 }
 
-bool HelperMethods::ifAmountIsCorrect(float amount){
-    if(amount < 0.0){
-        return 0;
-    }else return 1;
+string HelperMethods::getDateInFormatYYYYMMDD() {
+    string date = "";
+    while(true) {
+        getline(cin, date);
+        if((date.length() != 10) || (date[4] != '-' && date[7] != '-')) {
+            cout << "Nipoprawny format!" << endl;
+            cout << "Podaj date ";
+        } else {
+            for(int i = 0; i < date.length(); i++) {
+                if(date[i] != '-') {
+                    if(date[i] < '0' || date[i] > '9') {
+                        cout << "Data nie prawidlowa" << endl;
+                        cout << "Podaj date ";
+                        break;
+                    } else if(i == date.length() - 1)
+                        return date;
+                }
+            }
+        }
+    }
 }

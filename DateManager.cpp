@@ -164,3 +164,9 @@ bool DateManager::ifDateIsFromPreviousMonth(string date){
         return true;
     else return false;
 }
+
+bool DateManager::ifDateIsFromSelectedPeriod(string earlierDate, string laterDate, int numbersOfDaysFromZeroDateToCheckedDate){
+    if(numbersOfDaysFromZeroDateToCheckedDate >= getSecondsFromZeroDateToSelectedDate(earlierDate) && numbersOfDaysFromZeroDateToCheckedDate <= getSecondsFromZeroDateToSelectedDate(laterDate)){
+        return true;
+    }else return false;
+}

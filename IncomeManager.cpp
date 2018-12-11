@@ -18,7 +18,7 @@ void IncomeManager::addIncome() {
         date = dateManager.convertDateIntoString(dateManager.getTodayDate());
     } else {
         cout << "Podaj date w formacie rrrr-mm-dd ";
-        date = HelperMethods::getString();
+        date = HelperMethods::getDateInFormatYYYYMMDD();
         if(!dateManager.ifDateIsCorrect(date)) {
             cout << "Data niepoprawana" << endl;
             system("pause");
@@ -45,14 +45,10 @@ Income IncomeManager::enterIncomeOfSelectedDate(string selectedDate) {
 
     cout << "Podaj wartosc przychodu: ";
 
-    amount = HelperMethods::getFloat();
-    if(HelperMethods::ifAmountIsCorrect(amount)) {
-        amount = round(amount * 100) / 100;
-        income.setAmount(amount);
-    } else {
-        cout << "Kwota niepoprawna";
-        system("pause");
-    }
+    amount = HelperMethods::getAmount();
+
+    amount = round(amount * 100) / 100;
+    income.setAmount(amount);
     income.setNumberOfDaysFromZeroDateToIncomeDate(dateManager.getSecondsFromZeroDateToSelectedDate(selectedDate));
     return income;
 }
@@ -62,19 +58,12 @@ int IncomeManager::getIdOfLastIncome() {
 }
 
 void IncomeManager::showIncome(Income &income) {
-    cout << endl << "ID przychodu: " << income.getIncomeID() << endl;
-    cout << "ID uzytkownika: " << income.getUserID() << endl;
-    cout << "Data: " << income.getDate() << endl;
-    cout << "Opis: " << income.getItem() << endl;
-    cout << "Wartosc: " << income.getAmount() << endl;
-}
-
-void IncomeManager::showIncomes() {
-    vector <Income> ::iterator itr = incomes.begin();
-    for(itr; itr != incomes.end(); itr ++) {
-        showIncome(*itr);
-    }
-    system("pause");
+    cout.precision(2);
+    cout << fixed;
+    cout << endl << "ID przychodu:      " << income.getIncomeID() << endl;
+    cout << "Data:              " << income.getDate() << endl;
+    cout << "Opis:              " << income.getItem() << endl;
+    cout << "Wartosc:           " << income.getAmount() << endl;
 }
 
 void IncomeManager::loadIncomesOfLoggedInUser() {
@@ -85,8 +74,9 @@ float IncomeManager::displayIncomesOfCurrentMonth() {
     float sumOfIncomes = 0.0;
     sort(incomes.begin(), incomes.end(), Income::sortBy);
     vector <Income> ::iterator itr = incomes.begin();
+    cout << "PRZYCHODY" << endl;
     for(itr; itr != incomes.end(); itr ++) {
-        if(dateManager.ifDateIsFromCurrentMonth(itr -> getDate())){
+        if(dateManager.ifDateIsFromCurrentMonth(itr -> getDate())) {
             sumOfIncomes += itr -> getAmount();
             showIncome(*itr);
         }
@@ -100,13 +90,30 @@ float IncomeManager::displayIncomesOfPreviousMonth() {
     float sumOfIncomes = 0.0;
     sort(incomes.begin(), incomes.end(), Income::sortBy);
     vector <Income> ::iterator itr = incomes.begin();
+    cout << "PRZYCHODY" << endl;
     for(itr; itr != incomes.end(); itr ++) {
-        if(dateManager.ifDateIsFromPreviousMonth(itr -> getDate())){
+        if(dateManager.ifDateIsFromPreviousMonth(itr -> getDate())) {
             sumOfIncomes += itr -> getAmount();
             showIncome(*itr);
         }
     }
     cout << "Suma przychodow z poprzedniego miesiaca: " << sumOfIncomes << endl;
+    return sumOfIncomes;
+
+}
+
+float IncomeManager::displayIncomesOfSelectedPeriod(string earlierDate, string laterDate) {
+    float sumOfIncomes = 0.0;
+    sort(incomes.begin(), incomes.end(), Income::sortBy);
+    vector <Income> ::iterator itr = incomes.begin();
+    cout << "PRZYCHODY" << endl;
+    for(itr; itr != incomes.end(); itr ++) {
+        if(dateManager.ifDateIsFromSelectedPeriod(earlierDate, laterDate, itr -> getNumberOfDaysFromZeroDateToIncomeDate())) {
+            sumOfIncomes += itr -> getAmount();
+            showIncome(*itr);
+        }
+    }
+    cout << "Suma przychodow z wybranego okresu: " << sumOfIncomes << endl;
     return sumOfIncomes;
 
 }

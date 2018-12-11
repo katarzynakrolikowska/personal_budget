@@ -31,5 +31,7 @@ public:
     string getEarlierDate(string date1, string date2);
     bool ifDateIsFromCurrentMonth(string date);
     bool ifDateIsFromPreviousMonth(string date);
+    bool ifDateIsFromSelectedPeriod(string earlierDate, string laterDate, int numbersOfDaysFromZeroDateToCheckedDate);
+
 };
 #endif
