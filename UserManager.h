@@ -32,6 +32,7 @@ public:
     char selectOptionFromUserMenu();
     void showUsers();
     int getIdOfLoggedInUser();
+    void changePassword();
 };
 
 

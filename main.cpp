@@ -43,6 +43,9 @@ int main() {
             case '5':
                 personalBudget.displayBalanceOfSelectedPeriod();
                 break;
+            case '6':
+                personalBudget.changeUserPassword();
+                break;
             case '7':
                 personalBudget.logOutUser();
                 break;

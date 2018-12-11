@@ -136,3 +136,18 @@ char UserManager::selectOptionFromUserMenu(){
 int UserManager::getIdOfLoggedInUser(){
     return idOfLoggedInUser;
 }
+
+void UserManager::changePassword(){
+    string newPassword = "";
+    cout << "Podaj nowe haslo: ";
+    newPassword = HelperMethods::getString();
+
+    for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++) {
+        if (itr -> getUserID() == idOfLoggedInUser) {
+            itr -> setPassword(newPassword);
+            cout << "Haslo zostalo zmienione." << endl << endl;
+            system("pause");
+        }
+    }
+    userFile.editUserPasswordAtFile(idOfLoggedInUser, newPassword);
+}
