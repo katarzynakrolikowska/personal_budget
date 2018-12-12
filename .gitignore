@@ -1,3 +1,5 @@
-personalBudget.*
+*.cbp
+*.depend
+*.layout
 */
 *.xml
