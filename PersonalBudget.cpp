@@ -10,13 +10,13 @@ void PersonalBudget::registerUser() {
 
 void PersonalBudget::logInUser() {
     userManager.logInUser();
-    if(userManager.ifUserIsLoggedIn()) {
+    if(userManager.isUserLoggedIn()) {
         financesManager = new FinancesManager(nameOfIncomesFile, nameOfExpensesFile, userManager.getIdOfLoggedInUser());
     }
 }
 
 void PersonalBudget::logOutUser() {
-    if(userManager.ifUserIsLoggedIn()) {
+    if(userManager.isUserLoggedIn()) {
         userManager.logOutUser();
         delete financesManager;
         financesManager = NULL;
@@ -24,8 +24,8 @@ void PersonalBudget::logOutUser() {
         cout << "Nie jestes zalogowany";
 }
 
-bool PersonalBudget::ifUserIsLoggedIn() {
-    return userManager.ifUserIsLoggedIn();
+bool PersonalBudget::isUserLoggedIn() {
+    return userManager.isUserLoggedIn();
 }
 
 char PersonalBudget::selectOptionFromMainMenu() {
@@ -45,7 +45,7 @@ char PersonalBudget::selectOptionFromMainMenu() {
 }
 
 char PersonalBudget::selectOptionFromUserMenu() {
-    if(userManager.ifUserIsLoggedIn())
+    if(userManager.isUserLoggedIn())
         return userManager.selectOptionFromUserMenu();
     else {
         cout << "Aby wybrac opcje z menu uzytkownika zaloguj sie";
@@ -54,7 +54,7 @@ char PersonalBudget::selectOptionFromUserMenu() {
 }
 
 void PersonalBudget::addIncome() {
-    if(userManager.ifUserIsLoggedIn()) {
+    if(userManager.isUserLoggedIn()) {
         financesManager -> addIncome();
     } else {
         cout << "Nie jestes zalogowany" << endl;
@@ -63,7 +63,7 @@ void PersonalBudget::addIncome() {
 }
 
 void PersonalBudget::addExpense() {
-    if(userManager.ifUserIsLoggedIn()) {
+    if(userManager.isUserLoggedIn()) {
         financesManager -> addExpense();
     } else {
         cout << "Nie jestes zalogowany" << endl;
@@ -72,7 +72,7 @@ void PersonalBudget::addExpense() {
 }
 
 void PersonalBudget::displayBalanceOfCurrentMonth() {
-    if(userManager.ifUserIsLoggedIn()) {
+    if(userManager.isUserLoggedIn()) {
         financesManager -> displayBalanceOfCurrentMonth();
     } else {
         cout << "Nie jestes zalogowany" << endl;
@@ -81,7 +81,7 @@ void PersonalBudget::displayBalanceOfCurrentMonth() {
 }
 
 void PersonalBudget::displayBalanceOfPreviousMonth() {
-    if(userManager.ifUserIsLoggedIn()) {
+    if(userManager.isUserLoggedIn()) {
         financesManager -> displayBalanceOfPreviousMonth();
     } else {
         cout << "Nie jestes zalogowany" << endl;
@@ -90,7 +90,7 @@ void PersonalBudget::displayBalanceOfPreviousMonth() {
 }
 
 void PersonalBudget::displayBalanceOfSelectedPeriod() {
-    if(userManager.ifUserIsLoggedIn()) {
+    if(userManager.isUserLoggedIn()) {
         financesManager -> displayBalanceOfSelectedPeriod();
     } else {
         cout << "Nie jestes zalogowany" << endl;
@@ -99,7 +99,7 @@ void PersonalBudget::displayBalanceOfSelectedPeriod() {
 }
 
 void PersonalBudget::changeUserPassword(){
-    if(userManager.ifUserIsLoggedIn()) {
+    if(userManager.isUserLoggedIn()) {
         userManager.changePassword();
     } else {
         cout << "Nie jestes zalogowany" << endl;

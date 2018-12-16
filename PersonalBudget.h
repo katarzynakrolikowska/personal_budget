@@ -21,7 +21,7 @@ public:
     void registerUser();
     void logInUser();
     void logOutUser();
-    bool ifUserIsLoggedIn();
+    bool isUserLoggedIn();
     char selectOptionFromMainMenu();
     char selectOptionFromUserMenu();
     void addIncome();

@@ -6,7 +6,7 @@ int main() {
     PersonalBudget personalBudget("Users.xml", "Incomes.xml", "Expenses.xml");
     char choice = {0};
     while (true) {
-        if (!personalBudget.ifUserIsLoggedIn()) {
+        if (!personalBudget.isUserLoggedIn()) {
             choice = personalBudget.selectOptionFromMainMenu();
 
             switch (choice) {

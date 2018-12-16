@@ -88,7 +88,7 @@ void UserManager::logOutUser() {
     idOfLoggedInUser = 0;
 }
 
-bool UserManager::ifUserIsLoggedIn() {
+bool UserManager::isUserLoggedIn() {
     if(idOfLoggedInUser != 0)
         return 1;
     else
